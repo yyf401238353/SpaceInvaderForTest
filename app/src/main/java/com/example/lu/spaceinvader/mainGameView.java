@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.PointF;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
+import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -43,8 +44,8 @@ public class mainGameView extends GameView implements Runnable {
     //������xyλ��
     static float Point_x, Point_y;
     private boolean isRun=false;
-    public mainGameView(Context context) {
-        super(context);
+    public mainGameView(Context context,AttributeSet attrs) {
+        super(context,attrs);
         WindowManager wm = (WindowManager) getContext()
                 .getSystemService(Context.WINDOW_SERVICE);
          WIDTH = wm.getDefaultDisplay().getWidth();
@@ -399,7 +400,7 @@ public class mainGameView extends GameView implements Runnable {
             draw();
             timer++;
            if(IF_OVER){
-               Toast.makeText(getContext(),"游戏结束！",Toast.LENGTH_SHORT).show();
+              // Toast.makeText(getContext(),"游戏结束！",Toast.LENGTH_SHORT).show();
                getRoot().clearChildren();
                bulletHit.clear();
                bulletComing.clear();

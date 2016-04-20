@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.util.AttributeSet;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -12,12 +13,18 @@ import android.view.SurfaceView;
  */
 public class GameView extends SurfaceView implements SurfaceHolder.Callback {
    private Container root;
-    public GameView(Context context) {
+   // public GameView(Context context) {
+    //    super(context);
+    //    root=new Container();
+   //     getHolder().addCallback(this);
+  //  }
+
+    public GameView(Context context, AttributeSet attrs){
         super(context);
         root=new Container();
         getHolder().addCallback(this);
-    }
 
+    }
 
     public void draw(){
         Canvas canvas=getHolder().lockCanvas();
