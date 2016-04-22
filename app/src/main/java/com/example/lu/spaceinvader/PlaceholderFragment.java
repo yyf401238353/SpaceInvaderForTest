@@ -16,6 +16,12 @@ public class PlaceholderFragment extends Fragment {
     }
     public View onCreateView(LayoutInflater infalater,ViewGroup container,Bundle saveInstanceState){
           View rootView=infalater.inflate(R.layout.fragment_main,container,false);
+        rootView.findViewById(R.id.btnStart).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager().beginTransaction().replace(R.id.container, new gameFragment()).commit();
+            }
+        });
         return rootView;
     }
 }

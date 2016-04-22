@@ -18,7 +18,10 @@ public class MainActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
        // new mainGameView(this);
         //setContentView(new mainGameView(this));
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.test_layout);
+        if(savedInstanceState==null){
+            getFragmentManager().beginTransaction().add(R.id.container,new PlaceholderFragment()).commit();
+        }
 
     }
    // protected void dialog() {
