@@ -18,6 +18,7 @@ public class gameFragment extends Fragment {
 
     public gameFragment() {
         // Required empty public constructor
+
     }
 
 
@@ -25,6 +26,7 @@ public class gameFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_game, container, false);
     }
 

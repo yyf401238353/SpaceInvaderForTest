@@ -4,6 +4,7 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 <TextView
     android:text="Hello world"
+    android:id="@+id/txt01"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content" />
 
@@ -13,4 +14,11 @@
         android:text="开始游戏"
         android:id="@+id/btnStart"
         android:layout_gravity="center_vertical" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/sp_level"
+        android:spinnerMode="dropdown"
+        android:entries="@array/level" />
 </LinearLayout>
