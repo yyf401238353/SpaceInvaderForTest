@@ -32,7 +32,7 @@ public class MainActivity extends Activity {
    // protected void dialog() {
     //    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
    //     builder.setMessage("确认退出吗？");
-
+//
   //      builder.setTitle("提示");
 
      //   builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
