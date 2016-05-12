@@ -5,20 +5,23 @@
 <TextView
     android:text="Hello world"
     android:id="@+id/txt01"
+    android:gravity="center"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         android:text="开始游戏"
         android:id="@+id/btnStart"
-        android:layout_gravity="center_vertical" />
+        android:layout_gravity="center" />
 
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/sp_level"
+        android:gravity="center"
         android:spinnerMode="dropdown"
         android:entries="@array/level" />
 </LinearLayout>

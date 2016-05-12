@@ -15,7 +15,7 @@ public class bulletHeroine extends Container {
     private int relativeHorizontalPosition;
     private float speed;
     private Paint p;
-    private int checkDelay=0;
+    private int checkDelay=6;
     private int Num=0;
     private final int CRASH_WALL=1;
     private final int CRASH_ENEMY=2;
@@ -28,7 +28,7 @@ public bulletHeroine(mainHeroine flight){
      setTimeToLive(3);
      setDirection(Math.random()*20-10);
     this.setWidth(10);
-    p.setColor(Color.WHITE);
+    p.setColor(Color.RED);
     }
 
 //public void bulletInit(){
@@ -43,12 +43,12 @@ public bulletHeroine(mainHeroine flight){
 
     public void move(float width,float height) {
         if (getCheckDelay() == 0) {
-            if (getX() > width || getX() < 0) {
+            if (getX() > width-80 || getX() < 80) {
                 setDirection( 360-getDirection());
                 setCheckDelay(5);
                 setTimeToLive(getTimeToLive()-1);
             }
-            if (getY() < 60 || getY() > height) {
+            if (getY() < 80 || getY() > height-160) {
                 setDirection(180-getDirection());
                 setCheckDelay(5);
                 setTimeToLive(getTimeToLive()-1);

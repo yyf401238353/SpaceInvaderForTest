@@ -15,7 +15,7 @@ public class Text extends Container {
     private String TextToShow;
 
     private int data_saved;
-    public Text(float x,float y,String text,int data,int WIDTH,int HEIGHT){
+    public Text(float x,float y,String text,int data,int WIDTH,int HEIGHT,String level){
         p=new Paint();
         setX(x);
         setY(y);

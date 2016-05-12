@@ -14,6 +14,7 @@ import android.graphics.drawable.BitmapDrawable;
  */
 public class enemy extends Container{
     private  boolean IF_DIE=false;
+    private float shootTimer;
     private int Num;
     private int Move_Type=1;
     private final int DEFAULT=0,SPACE_INVADER=1;
@@ -144,5 +145,13 @@ public class enemy extends Container{
 
     public void setInvader2(Bitmap invader2) {
         this.invader2 = invader2;
+    }
+
+    public float getShootTimer() {
+        return shootTimer;
+    }
+
+    public void setShootTimer(float shootTimer) {
+        this.shootTimer = shootTimer;
     }
 }

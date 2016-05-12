@@ -7,6 +7,8 @@ import android.graphics.Bitmap;
 import android.graphics.PointF;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Handler;
+import android.os.Message;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.WindowManager;
@@ -14,6 +16,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by lu on 2016-03-23.
@@ -44,6 +47,9 @@ public class mainGameView extends GameView implements Runnable {
     //������xyλ��
     static float Point_x, Point_y;
     private boolean isRun=false;
+    private Random random;
+    private Handler handler;
+    private String level;
     public mainGameView(Context context,AttributeSet attrs) {
         super(context,attrs);
         WindowManager wm = (WindowManager) getContext()
@@ -65,6 +71,7 @@ public class mainGameView extends GameView implements Runnable {
 
     //����һ�����ڻ�ͼ���߳�
     public void start(){
+       level= ((MainActivity)getContext()).getLevel();
         addFlight();
         animation = new Thread(this);
         isRun=true;
@@ -115,10 +122,11 @@ public class mainGameView extends GameView implements Runnable {
 
         }
     public void addScoreText(){
-        Score=new Text(700,70,"Score:",0,(int)WIDTH,(int)HEIGHT);
+        Score=new Text(700,70,"Score:",0,(int)WIDTH,(int)HEIGHT,level);
         getRoot().addChild(Score);
     }
     public void addenemy(){
+
         switch (enemyArray){
             case RANDOM_ARRAY:
              enemy enemyFlight = new enemy(52, 41, (float) Math.random() * WIDTH, 10, enemyIcon,enemyIcon1);
@@ -133,6 +141,8 @@ public class mainGameView extends GameView implements Runnable {
                     enemy enemyFly = new enemy(52, 41, WIDTH / 4 + (i-1) * 70, 100 + row * 50, enemyIcon,enemyIcon1);
                     enemyFly.setRow(row);
                     enemyFly.setNum(i);
+                    random=new Random((enemyFly.getNum()+enemyFly.getRow())*(enemyFly.getNum()-enemyFly.getRow()));
+                    enemyFly.setShootTimer(random.nextInt()*100);
                     getRoot().addChild(enemyFly);
                     enemies.add(enemyFly);
 
@@ -165,7 +175,7 @@ public class mainGameView extends GameView implements Runnable {
 
             } else {
 
-                    if (enemyFlight.getX() > WIDTH - 20&&enemyFlight.getMove_Direction()==RIGHT) {
+                    if (enemyFlight.getX() > WIDTH - 200&&enemyFlight.getMove_Direction()==RIGHT) {
                         rowDirection[tempRow - 1] = LEFT;
                     }
 
@@ -231,16 +241,46 @@ public class mainGameView extends GameView implements Runnable {
 
 
     public void addEnemyBullet(){
-        for (enemy enemyFlight:enemies) {
-            bulletEnemy bulletOfEnemy = new bulletEnemy(enemyFlight);
-            bulletOfEnemy.bulletTypeInitial(fly);
-            getRoot().addChild(bulletOfEnemy);
-            bulletComing.add(bulletOfEnemy);
+
+        if(level.equals("easy")||level.equals("normal")) {
+            for (enemy enemyFlight : enemies) {
+                if (enemyFlight.getShootTimer() % 11 == 0) {
+                    bulletEnemy bulletOfEnemy = new bulletEnemy(enemyFlight);
+                    bulletOfEnemy.setTYPE(0);
+                    bulletOfEnemy.bulletTypeInitial(fly);
+                    //bulletOfEnemy.setLevel(level);
+
+                    getRoot().addChild(bulletOfEnemy);
+                    bulletComing.add(bulletOfEnemy);
+
+                }else {
+                    enemyFlight.setShootTimer(enemyFlight.getShootTimer()+1);
+                }
+            }
+        }
+        else{
+            for (enemy enemyFlight : enemies) {
+                if (enemyFlight.getShootTimer() % 6 == 0){
+                    bulletEnemy bulletOfEnemy = new bulletEnemy(enemyFlight);
+                bulletOfEnemy.bulletTypeInitial(fly);
+                //bulletOfEnemy.setLevel(level);
+                bulletOfEnemy.setTYPE(1);
+                getRoot().addChild(bulletOfEnemy);
+                bulletComing.add(bulletOfEnemy);
+
+            }else {
+                    enemyFlight.setShootTimer(enemyFlight.getShootTimer()+1);
+                }
+        }
         }
     }
    public void bulletDeal() {
         for (bulletHeroine bullet : bulletHit) {
+
             bullet.move(WIDTH,HEIGHT);
+            if(bulletHitBox(bullet.getX(),bullet.getY(),fly.getmDestRect(),bullet.getWidth())&&bullet.getCheckDelay()==0){
+                setIF_OVER(true);
+            }
 
 
         }
@@ -289,8 +329,8 @@ public class mainGameView extends GameView implements Runnable {
                     //    &&bulletOfHeroine.getY()>enemyFlight.getY()&&bulletOfHeroine.getY()<enemyFlight.getY()+enemyFlight.getHeight()){
                      if(bulletHitBox(bulletOfHeroine.getX(),bulletOfHeroine.getY(),rect,bulletOfHeroine.getWidth())) {
                     enemyFlight.setIF_DIE(true);
-                    bulletOfHeroine.setIF_DIE(true);
-
+                   // bulletOfHeroine.setIF_DIE(true)
+                         bulletOfHeroine.setDirection(bulletOfHeroine.getDirection()-(190-Math.random()*20));
                 }
             }
             if (enemyFlight.getY() > HEIGHT) {
@@ -359,6 +399,7 @@ public class mainGameView extends GameView implements Runnable {
     @Override
     //��ͼ�߳�
     public void run() {
+
         if (enemyArray==SQUARE){
             addenemy();
 
@@ -378,10 +419,12 @@ public class mainGameView extends GameView implements Runnable {
 
                     addenemy();
                 }
-                if(timer%30==0) {
-                    addEnemyBullet();
 
-                }
+                    if (timer % 30 == 0) {
+                        addEnemyBullet();
+
+                    }
+
             }
 
             if(enemyArray==SQUARE){

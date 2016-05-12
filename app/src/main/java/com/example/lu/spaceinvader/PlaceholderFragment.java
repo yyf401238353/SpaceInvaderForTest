@@ -25,7 +25,9 @@ public class PlaceholderFragment extends Fragment {
         rootView.findViewById(R.id.btnStart).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 getFragmentManager().beginTransaction().replace(R.id.container, new gameFragment()).commit();
+
             }
         });
         sp_level = (Spinner) rootView.findViewById(R.id.sp_level);
@@ -36,6 +38,7 @@ public class PlaceholderFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 level = (String) sp_level.getSelectedItem();
                 tv.setText(level);
+                ((MainActivity)getActivity()).setLevel(level);
             }
 
             @Override

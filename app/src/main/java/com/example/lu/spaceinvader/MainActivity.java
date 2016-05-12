@@ -3,6 +3,8 @@ package com.example.lu.spaceinvader;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.internal.widget.AdapterViewCompat;
@@ -16,6 +18,8 @@ import android.widget.TextView;
 
 
 public class MainActivity extends Activity {
+private String level="简单";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +33,8 @@ public class MainActivity extends Activity {
         }
 
     }
-   // protected void dialog() {
+
+    // protected void dialog() {
     //    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
    //     builder.setMessage("确认退出吗？");
 //
@@ -73,5 +78,13 @@ public class MainActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
     }
 }

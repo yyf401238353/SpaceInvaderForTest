@@ -13,8 +13,9 @@ public class bulletEnemy extends Container {
     private float speed;
     private double direction;
     private int relativeHorizontalPosition;
-
+    private int Move_Direction=0;
     private int TYPE;
+   // private String level;
     private final int LEFT=1,UP=1;
     private final int RIGHT=2,DOWN=2;
     private final int DEFAULTTYPE=0;
@@ -72,7 +73,6 @@ public class bulletEnemy extends Container {
     }
     public void move(){
 
-
             setY((float) (getY() + getSpeed() * Math.cos(Math.toRadians(getDirection()))));
 
        if(relativeHorizontalPosition ==LEFT) {
@@ -128,4 +128,11 @@ public class bulletEnemy extends Container {
     }
 
 
+  //  public String getLevel() {
+ //       return level;
+ //   }
+
+  //  public void setLevel(String level) {
+  //      this.level = level;
+ //   }
 }
