@@ -26,7 +26,7 @@ public class Container {
       //canvas.translate(getX(),getY());
         costomDraw(canvas);
         for (Container child: children){
-            child.draw(canvas);
+            child.draw(canvas);//需要子类重写方法
         }
         canvas.restore();
     }

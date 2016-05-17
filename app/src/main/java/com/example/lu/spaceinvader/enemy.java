@@ -64,7 +64,7 @@ public class enemy extends Container{
 
             case DEFAULT:
                 setY(getY() + 10);
-                break;
+                break;//自动生成敌机模式下的移动
             case SPACE_INVADER:
                 if(Move_Direction==LEFT)
                 {
@@ -72,7 +72,7 @@ public class enemy extends Container{
                 }
                 if (Move_Direction==RIGHT){
                     setX(getX() + 20);
-                }
+                }//太空侵略者模式下的移动
 
 
         }

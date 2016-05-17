@@ -27,7 +27,7 @@ public class PlaceholderFragment extends Fragment {
             public void onClick(View v) {
 
                 getFragmentManager().beginTransaction().replace(R.id.container, new gameFragment()).commit();
-
+                     //用于跳转的有游戏画面的那个Fragment
             }
         });
         sp_level = (Spinner) rootView.findViewById(R.id.sp_level);
@@ -37,8 +37,7 @@ public class PlaceholderFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 level = (String) sp_level.getSelectedItem();
-                tv.setText(level);
-                ((MainActivity)getActivity()).setLevel(level);
+                ((MainActivity)getActivity()).setLevel(level);//用于获取选择难度的那个spiner中的内容
             }
 
             @Override

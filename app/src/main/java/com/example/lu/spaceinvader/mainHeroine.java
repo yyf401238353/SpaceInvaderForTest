@@ -9,19 +9,21 @@ import android.graphics.Rect;
 /**
  * Created by lu on 2016-03-23.
  */
-public class mainHeroine extends Container{
+public class mainHeroine extends Container {
     private Bitmap protector;
     private Paint p;
+    private double direction;
     private int speed;
     private Rect mSrcRect, mDestRect;
-    public mainHeroine(float width,float height,Bitmap bitmap){
-        p=new Paint();
+
+    public mainHeroine(float width, float height, Bitmap bitmap) {
+        p = new Paint();
         setX(500);
         setY(600);
         setHeight(height);
         setWidth(width);
         setSpeed(20);
-        protector=bitmap;
+        protector = bitmap;
         p.setColor(Color.WHITE);
         setmDestRect(new Rect((int) getX(), (int) getY(), (int) getX() + 184, (int) getY() + 104));
     }
@@ -29,26 +31,29 @@ public class mainHeroine extends Container{
     @Override
     public void costomDraw(Canvas canvas) {
         super.costomDraw(canvas);
-       // canvas.drawCircle(getX(), getY(), getWidth(), p);
-        setmDestRect(new Rect((int) getX(), (int) getY(), (int) getX() + 92, (int) getY() + 52));
-        canvas.drawBitmap(protector,null,mDestRect,p);
+        // canvas.drawCircle(getX(), getY(), getWidth(), p);
+        setmDestRect(new Rect((int) getX(), (int) getY(), (int) getX() + 92, (int) getY() + 52));//用于设定bitmap的位置
+        canvas.drawBitmap(protector, null, mDestRect, p);
     }
 
     public void move(float touch_x,float touch_y,boolean is_point){
-       if (is_point) {
-           if (touch_x > getX()) {
-               setX(getX()+getSpeed());
-           }
-           if (touch_x < getX()){
-               setX(getX()-getSpeed());
-           }
-           if (touch_y > getY()) {
-               setY(getY()+getSpeed());
-           }
-           if (touch_y < getY()) {
-               setY(getY()-getSpeed());
-           }
-       }
+       touch_x=touch_x-80;
+        touch_y=touch_y-160;
+        if (is_point) {
+            if (touch_x > getX()) {
+                setX(getX()+getSpeed());
+            }
+            if (touch_x < getX()){
+                setX(getX()-getSpeed());
+            }
+            if (touch_y > getY()) {
+                setY(getY()+getSpeed());
+            }
+            if (touch_y < getY()) {
+                setY(getY()-getSpeed());
+            }
+        }
+
 
 
     }
@@ -67,5 +72,13 @@ public class mainHeroine extends Container{
 
     public void setSpeed(int speed) {
         this.speed = speed;
+    }
+
+    public double getDirection() {
+        return direction;
+    }
+
+    public void setDirection(double direction) {
+        this.direction = direction;
     }
 }

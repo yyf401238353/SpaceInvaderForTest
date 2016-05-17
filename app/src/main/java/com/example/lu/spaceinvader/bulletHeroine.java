@@ -42,7 +42,7 @@ public bulletHeroine(mainHeroine flight){
 
 
     public void move(float width,float height) {
-        if (getCheckDelay() == 0) {
+        if (getCheckDelay() == 0) {//这里是进行了子弹碰壁的判断 delay是为了不让子弹卡在边界上来回改变方向
             if (getX() > width-80 || getX() < 80) {
                 setDirection( 360-getDirection());
                 setCheckDelay(5);
@@ -62,7 +62,7 @@ public bulletHeroine(mainHeroine flight){
 
         setY((float) (getY() - getSpeed() * Math.cos(Math.toRadians(getDirection()))));
         setX((float) (getX() + getSpeed() * Math.sin(Math.toRadians(getDirection()))));
-
+           //通过三角函数的算法决定在xy上移动多少
     }
 
 

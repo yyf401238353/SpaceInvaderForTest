@@ -12,26 +12,26 @@ import android.view.SurfaceView;
  * Created by lu on 2016-03-23.
  */
 public class GameView extends SurfaceView implements SurfaceHolder.Callback {
-   private Container root;
+
    // public GameView(Context context) {
     //    super(context);
     //    root=new Container();
    //     getHolder().addCallback(this);
   //  }
-
+   private Container root;
     public GameView(Context context, AttributeSet attrs){
         super(context);
         root=new Container();
-        getHolder().addCallback(this);
+        getHolder().addCallback(this);//用于回调
 
     }
 
     public void draw(){
-        Canvas canvas=getHolder().lockCanvas();
+        Canvas canvas=getHolder().lockCanvas();//锁定画布
         if(canvas!=null){
             canvas.drawColor(Color.BLACK);
-            root.draw(canvas);
-            getHolder().unlockCanvasAndPost(canvas);
+            root.draw(canvas);//调用Container的方法
+            getHolder().unlockCanvasAndPost(canvas);//街锁画布
         }
     }
     @Override

@@ -320,7 +320,7 @@ public class mainGameView extends GameView implements Runnable {
 
             return false;
 
-    }
+    }//这是一个圆形和矩形的碰撞盒 大体上就是算出一个空间内是否有这个点
     public void enemyDestroy() {
         for (enemy enemyFlight : enemies) {
             for (bulletHeroine bulletOfHeroine : bulletHit) {
